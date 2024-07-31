@@ -1,74 +1,72 @@
-import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
-import logo from '../assets/logo.png'
-import Icon from 'react-native-vector-icons/FontAwesome5'
+import { View, Text, StyleSheet, Image } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome5";
 
-export const Header = () => {
+import logo from "../assets/logo.png";
+const Header = () => {
   return (
     <View style={styles.container}>
-      <Image source={logo} style={styles.image}/>
+      <Image source={logo} style={styles.image} />
       <View style={styles.iconContainer}>
         <View style={styles.hearts}>
         </View>
-        <Icon name='heart' size={25} color="white" />
+        <Icon name="heart" size={20} color="white" />
         <View style={styles.unReadContainer}>
-          <Text style={styles.unRead}>12</Text>
+            <Text style={styles.unRead}>3</Text>
         </View>
-        <Icon name='facebook-messenger' size={25} color="white" />
+        <Icon
+          name="facebook-messenger"
+          size={20}
+          color="white"
+          styles={styles.icon}
+        />
       </View>
     </View>
-  )
-}
-
+  );
+};
 
 const styles = StyleSheet.create({
-  container:{
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: 10
+  container: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    padding: 10,
   },
-  text:{
-    color: 'white'
+  text: {
+    color: "white",
   },
-  image:{
-    width: 150,
-    height: 45
+  image: {
+    width: 100,
+    height: 20,
   },
-  iconContainer:{
-    flexDirection: 'row',
-    gap: 25
-  },
-  unRead:{
-    color: 'white',
-    fontSize: 13,
-    fontWeight:'500',
+  iconContainer: { flexDirection: "row", gap: 15 },
+  unRead: {
+    color: "white",
+    fontSize: 8,
     textAlign: 'center'
   },
-  hearts:{
+  hearts: {
     backgroundColor: 'red',
     borderRadius: 8,
-    width: 14,
-    height: 14,
+    width: 12,
+    height: 12,
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    left: 17,
-    borderWidth: 3,
-    borderColor: 'black',
-    bottom: 35,
+    left: 15,
+    bottom: 10,
     zIndex: 10
   },
   unReadContainer:{
     backgroundColor: 'red',
     borderRadius: 8,
-    paddingHorizontal: 6,
-    paddingVertical: 1,
+    width: 12,
+    height: 12,
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    left: 55,
-    bottom: 35,
+    left: 50,
+    bottom: 10,
     zIndex: 10
   }
 });
 
+export default Header;

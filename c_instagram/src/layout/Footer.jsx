@@ -1,28 +1,50 @@
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome6'
-
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome5';
+const Tab = createBottomTabNavigator();
+import HomeScreen from '../screens/HomeScreen';
+import SearchScreen from '../screens/SearchScreen';
+import PostScreen from '../screens/PostScreen';
+import ReelScreen from '../screens/ReelScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 export const Footer = () => {
   return (
-    <View style={styles.footer}>
-      <Icon name='house' size={25} color={'white'}/>
-      <Icon name='magnifying-glass' size={25} color={'white'}/>
-      <Icon name='plus' style={{borderWidth: 2, borderColor: 'white', borderRadius: 7, padding: 3}} size={17} color={'white'}/>
-      <Icon name='clapperboard' size={25} color={'white'}/>
-      <Icon name='user' size={25} color={'white'}/>
-    </View>
-  )
-}
+    <Tab.Navigator screenOptions={({route})=> ({
+      tabBarIcon: (routeStatus) => setIcon(route, routeStatus),
+      tabBarShowLabel: false,
+      tabBarStyle: {
+        backgroundColor: 'black',
+        borderTopColor: '#999',
+      },
+    })}
+      >
+      <Tab.Screen name="Home" component={HomeScreen}  options={{headerShown: false}}/>
+      <Tab.Screen name="Search" component={SearchScreen}  options={{headerShown: false}}/>
+      <Tab.Screen name="Post" component={PostScreen}  options={{headerShown: false}}/>
+      <Tab.Screen name="Reel" component={ReelScreen}  options={{headerShown: false}}/>
+      <Tab.Screen name="Profile" component={ProfileScreen}  options={{headerShown: false}}/>
+    </Tab.Navigator>
+  );
+};
 
-const styles = StyleSheet.create({
-  footer:{
-    borderTopWidth: 1,
-    borderTopColor: 'grey',
-    flexDirection: 'row',
-    // backgroundColor: 'green',
-    width: '100%',
-    height: 50,
-    alignItems:'center',
-    justifyContent: 'space-evenly'
+function setIcon(route, routeStatus) {
+  let iconName = "";
+  if(route.name === "Home") {
+    iconName = "home";
   }
-});
+  if(route.name === "Search") {
+    iconName = "search";
+  }
+  if(route.name === "Post") {
+    iconName = "plus-square";
+  }
+  if(route.name === "Reel") {
+    iconName = "play-circle";
+  }
+  if(route.name === "Profile") {
+    iconName = "user";
+  }
+
+
+  let color = 'white';
+  return <AwesomeIcon name={iconName} size={18} color={color} />;
+}

@@ -1,32 +1,28 @@
-import React, { useEffect, useState } from 'react'
-import { Image, ScrollView, StyleSheet, Text } from 'react-native'
-import { Story } from '../components/stories/Story'
-import { stories } from '../data/stories';
-import { Divider } from 'react-native-elements';
-
-export const Stories = () => {
-
+import { useState, useEffect } from "react";
+import { ScrollView, StyleSheet } from "react-native";
+import StoryComponent from "../components/stories/Story";
+// simulate api call async
+import { stories } from "../data/stories";
+const Stories = () => {
   const [storyData, setStoryData] = useState([]);
   useEffect(() => {
+    // simulate data calling from api
     setStoryData(stories);
-  }
-  ,[])
+  }, []);
+
   return (
     <ScrollView horizontal style={styles.stories}>
-      {
-        storyData.map((story, index) => (
-          <Story key={index} dataStory={story} />
-        ))
-      }
+      {storyData &&
+        storyData.map((story) => (
+          <StoryComponent key={story.id} story={story} />
+        ))}
     </ScrollView>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
-  stories:{
-    paddingHorizontal: 10,
-    // borderColor: 'green',
-    // borderWidth: 2,
-    maxHeight: 100
-  }
+  stories: {
+    flexDirection: "row"
+  },
 });
+export default Stories;

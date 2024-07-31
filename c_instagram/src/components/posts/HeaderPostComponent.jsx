@@ -1,37 +1,45 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { CircleImage } from "../common/CircleImage"
+import { View, Text, StyleSheet } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome5";
 
-const imageProfile = "https://randomuser.me/api/portraits/thumb/men/75.jpg"
+import CircleImageComponent from "../../components/commom/circleImage";
 
-export const HeaderPostComponent = () => {
+const HeaderPostComponent = ({ user }) => {
+  const { username, imageUrl } = user;
   return (
     <View style={styles.header}>
-      <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-        <CircleImage uri={imageProfile} personalStyle={styles.personalStyle}/>
-        <Text style={styles.text}>Username</Text>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <CircleImageComponent
+          uriImage={imageUrl}
+          personalStyle={styles.profileImage}
+        />
+        <Text style={styles.text}>{username}</Text>
       </View>
-      <Text style={styles.text}>...</Text>
+      <Icon name="ellipsis-h" size={20} color="white" />
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
-  text:{
-    color: 'white',
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    padding: 10,
   },
-  header:{
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: 10
+  text: {
+    color: "white",
   },
   profileImage: {
     width: 30,
     height: 30,
     borderRadius: 15,
-    margin: 5
+    marginRight: 5,
   },
-  personalStyle:{
+});
 
-  }
-})
+export default HeaderPostComponent;
